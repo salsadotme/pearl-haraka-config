@@ -38,8 +38,14 @@ e.g.
 
 ### data.firebase
 
+Saves a copy of messages in Firebase and also delivers push notifications through the pearl-mobile app.
+
 Requires the `GOOGLE_APPLICATION_CREDENTIALS` env var when running the server:
 
 ```
 GOOGLE_APPLICATION_CREDENTIALS=<path to json file> haraka -c .
 ```
+
+### get_mx.eth
+
+Resolves recipient addresses using Pearl smart contracts rather than DNS MX records.
