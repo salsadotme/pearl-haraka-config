@@ -23,7 +23,7 @@ exports.hook_data_post = async function (next, connection) {
         .doc(connection.transaction.uuid)
         .set(body);
 
-    /*const topic = `${body.projectId}-${body.type}`; // e.g. BAYC-event
+    const topic = `${body.projectId}-${body.type}`; // e.g. bullish-bears-event
 
     const message = {
         notification: {
@@ -32,6 +32,6 @@ exports.hook_data_post = async function (next, connection) {
             key: "1",
         },
     };
-    await admin.messaging().sendToTopic(topic, message);*/
+    await admin.messaging().sendToTopic(topic, message);
     next();
 }
