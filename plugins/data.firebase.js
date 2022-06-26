@@ -1,7 +1,7 @@
 // data.firebase
 
 const { initializeApp, cert } = require("firebase-admin/app");
-const { getFirestore } = require('firebase-admin/firestore');
+const { getFirestore, Timestamp } = require('firebase-admin/firestore');
 const { getMessaging } = require('firebase-admin/messaging');
 
 initializeApp();
@@ -18,13 +18,15 @@ exports.hook_data_post = async function (next, connection) {
     const body = JSON.parse(connection.transaction.body.bodytext);
 
     // save to firebase
+    body.sentAt = Timestamp.fromDate(new Date());
     await db.collection('recipients')
         .doc(recipient)
         .collection('messages')
         .doc(connection.transaction.uuid)
         .set(body);
 
-    const topic = `${body.projectId}-${body.type}`; // e.g. bullish-bears-event
+    const topic = `${body.projectId}-${body.type}`; // e.g. bullish-bears-events
+    this.loginfo(topic);
 
     const message = {
         notification: {
