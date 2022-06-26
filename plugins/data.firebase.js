@@ -2,6 +2,7 @@
 
 const { initializeApp, cert } = require("firebase-admin/app");
 const { getFirestore } = require('firebase-admin/firestore');
+const { getMessaging } = require('firebase-admin/messaging');
 
 initializeApp();
 const db = getFirestore();
@@ -32,6 +33,6 @@ exports.hook_data_post = async function (next, connection) {
             key: "1",
         },
     };
-    await admin.messaging().sendToTopic(topic, message);
+    await getMessaging().sendToTopic(topic, message);
     next();
 }
