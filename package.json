@@ -1,0 +1,10 @@
+{
+  "name": "haraka_local",
+  "description": "An SMTP Server",
+  "version": "0.0.1",
+  "dependencies": {
+    "firebase-admin": "^11.0.0"
+  },
+  "repository": "",
+  "license": "MIT"
+}
