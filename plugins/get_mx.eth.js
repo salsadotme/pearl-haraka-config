@@ -16,7 +16,7 @@ exports.hook_get_mx = async function (next, hmail, domain) {
     const toAddress = hmail.todo.rcpt_to[0].user;
     this.loginfo("resolving address: " + toAddress);
 
-    const server = await contract.yampServers("0x06e6f7D896696167B2dA9281EbAF8a14580fbFCc");
+    const server = await contract.yampServers(toAddress);
     this.loginfo("resolved server: " + server);
 
     return next(OK, {
